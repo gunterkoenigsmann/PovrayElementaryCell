@@ -1,3 +1,14 @@
+#### A target that creates all moving images at once. ########################
+Films_PNG= $(patsubst %.pov,Film_%.png,*.pov)
+Cells_PNG= $(patsubst %.pov,Cell_%.png,*.pov)
+Films_WEBM=$(patsubst %.pov,Film_%.webm,*.pov)
+Cells_WEBM=$(patsubst %.pov,Cell_%.webm,*.pov)
+Films_FLV= $(patsubst %.pov,Film_%.flv,*.pov)
+Cells_FLV= $(patsubst %.pov,Cell_%.flv,*.pov)
+Films_GIF= $(patsubst %.pov,Film_%.gif,*.pov)
+Cells_GIF= $(patsubst %.pov,Cell_%.gif,*.pov)
+all: $(Films_PNG) $(Cells_PNG) $(Films_WEBM) $(Cells_WEBM) $(Films_FLV) $(Cells_FLV) $(Films_GIF) $(Cells_GIF)
+
 #### 1st Step: Render the images using Povray ################################
 Hires/Film_%002.png:%.pov
 	mkdir -p Hires
