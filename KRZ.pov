@@ -9,4 +9,4 @@ global_settings{assumed_gamma 1.0}
 KRZ (px,py, pz,transparency)
 #end
 
-#include "Film.pov"
+#include "Film.inc"

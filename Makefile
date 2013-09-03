@@ -1,12 +1,12 @@
-Hires/Film_%002.png:%.ini
+Hires/Film_%002.png:%.pov
 	mkdir -p Hires
-	povray +I $< +OFilm_$(patsubst %.ini,%,$<).png +K`echo "scale=4;$$i/250"|bc` Film.ini
-	mv Film_$(patsubst %.ini,%,$<)*.png Hires;done
+	povray Film.ini +I $< +OFilm_$(patsubst %.pov,%,$<).png +K`echo "scale=4;$$i/250"|bc`
+	mv Film_$(patsubst %.pov,%,$<)*.png Hires
 
-Hires/Cell_%02.png:%.ini
+Hires/Cell_%02.png:%.pov
 	mkdir -p Hires
-	povray +I $< +OCell_$(patsubst %.ini,%,$<).png +K`echo "scale=4;$$i/250"|bc` Cell.ini
-	mv Cell_$(patsubst %.ini,%,$<)*.png Hires;done
+	povray Cell.ini +I $< +OCell_$(patsubst %.pov,%,$<).png +K`echo "scale=4;$$i/250"|bc`
+	mv Cell_$(patsubst %.pov,%,$<)*.png Hires
 
 Scaled/%002.png:Hires/%002.png
 	mkdir -p Scaled
