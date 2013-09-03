@@ -56,13 +56,13 @@ camera{ location  <0.0 , 0.0 , -4.0>
         right <1,0,0>
 	up    <0,1,0>
         angle 20.1
-	rotate <10*sin(clock*6.283185307179586),10*cos(clock*6.283185307179586),0>
+	rotate <7*sin(clock*6.283185307179586),3.5*cos(clock*6.283185307179586),0>
 }
 
 light_source{
 	<-800,1500,-2000> 
 	color White
-	rotate <10*sin(clock*6.283185307179586),10*cos(clock*6.283185307179586),0>
+	rotate <7*sin(clock*6.283185307179586),3.5*cos(clock*6.283185307179586),0>
 	}
 
 #declare transparency=0;

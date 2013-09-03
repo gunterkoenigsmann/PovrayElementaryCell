@@ -19,9 +19,9 @@ Scaled/%02.png:Hires/%02.png
 
 
 %.png: Scaled/%002.png
-	apngasm $@  $(wildcard $(patsubst %.png,Scaled/%*.png,%@)) 1 25
+	apngasm $@  $(patsubst %.png,Scaled/%???.png,$@) 1 25
 %.png: Scaled/%02.png
-	apngasm $@  $(wildcard $(patsubst %.png,Scaled/%*.png,%@)) 1 25
+	apngasm $@  $(patsubst %.png,Scaled/%??.png,$@) 1 25
 
 %.flv: Hires/%002.png
 	avconv -i  $(patsubst %002.png,%,$<)%03d.png $@ -loop 0
