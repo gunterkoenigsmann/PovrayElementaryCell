@@ -39,3 +39,5 @@ Scaled/%02.png:Hires/%02.png
 	avconv -i  $(patsubst %002.png,%,$<)%03d.png $@ -loop 0
 %.gif: Hires/%02.png
 	avconv -i  $(patsubst %02.png,%,$<)%02d.png $@ -loop 0
+
+.PRECIOUS:  Hires/*.png Scaled/*.png
