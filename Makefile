@@ -4,17 +4,18 @@ Hires/Film_%002.png:%.pov
 	mv Film_$(patsubst %.pov,%,$<)*.png Hires
 
 Hires/Cell_%02.png:%.pov
+	echo $(PNGs) 
 	mkdir -p Hires
 	povray Cell.ini +I $< +OCell_$(patsubst %.pov,%,$<).png +K`echo "scale=4;$$i/250"|bc`
 	mv Cell_$(patsubst %.pov,%,$<)*.png Hires
 
 Scaled/%002.png:Hires/%002.png
 	mkdir -p Scaled
-	for i in Hires/$(patsubst %002.png,%,$@).???.png; do convert $$i -transparent black -resize 33% ../Scaled/$$i.png;done
+	cd Hires&&for i in $(patsubst Scaled/%002.png,%,$@)???.png; do convert $$i -transparent black -resize 33% ../Scaled/$$i;done
 
 Scaled/%02.png:Hires/%02.png
 	mkdir -p Scaled
-	for i in Hires/$(patsubst %02.png,%,$@).???.png; do convert $$i -transparent black -resize 33% ../Scaled/$$i.png;done
+	cd Hires&&for i in $(patsubst Scaled/%02.png,%,$@)??.png;   do convert $$i -transparent black -resize 33% ../Scaled/$$i;done
 
 
 %.png: Scaled/%002.png
@@ -40,4 +41,8 @@ Scaled/%02.png:Hires/%02.png
 %.gif: Hires/%02.png
 	avconv -i  $(patsubst %02.png,%,$<)%02d.png $@ -loop 0
 
-.PRECIOUS:  Hires/*.png Scaled/*.png
+PNGs= $(patsubst %.pov,Hires/Cell_%02.png,$(wildcard *.pov))
+PNGs+=$(patsubst %.pov,Hires/Cell_%002.png,$(wildcard *.pov))
+PNGs+=$(patsubst %.pov,Scaled/Cell_%02.png,$(wildcard *.pov))
+PNGs+=$(patsubst %.pov,Scaled/Cell_%002.png,$(wildcard *.pov))
+.PRECIOUS:  $(PNGs) 
